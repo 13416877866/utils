@@ -16,14 +16,23 @@
         //JSON不能克隆方法
            d:function(){}
        };
+   //4.循环效率优化问题
+   obj.b.push(obj.c);
+    obj.c.j=obj.b;
    
-    //3.解决循环引用问题
+   const result =deepClone4(obj);
+   console.log(obj);
+   console.log(result);
+
+
+
+    /* //3.解决循环引用问题
     obj.b.push(obj.c);
     obj.c.j=obj.b;
    
    const result =deepClone3(obj);
    console.log(obj);
-   console.log(result);
+   console.log(result); */
    
    
    /*     // 解决问题1没有解决存在问题2：循环引用(不可以)

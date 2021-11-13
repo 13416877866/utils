@@ -94,3 +94,31 @@ function deepClone3(target,map=new Map()){
     }
     
 }
+
+
+
+
+
+function deepClone4(target,map=new Map()){
+    if(typeof target==='object' && target !==null){
+        let cache=map.get(target);
+        if(cache){
+            return cache;
+        }
+        let isArray=Array.isArray(target);
+        const result=isArray?[]:{};
+        map.set(target,result);
+        if(isArray){
+            target.forEach((item,index)=>{
+                result[index]=deepClone4(item,map);
+            })
+        }else{
+            Object.keys(target).forEach(key=>{
+                result[key]=deepClone4(target[key],map);
+            })
+        }
+        return result;
+    }else{
+        return target;
+    }
+}
