@@ -13,18 +13,28 @@
            a:1,
            b:['e','f','g'],
            c:{h:20},
-        //存在问题1:JSON不能克隆方法
+        //JSON不能克隆方法
            d:function(){}
        };
-    // 解决问题1没有解决存在问题2：循环引用(不可以)
+   
+    //3.解决循环引用问题
     obj.b.push(obj.c);
     obj.c.j=obj.b;
-    //    2.递归拷贝
+   
+   const result =deepClone3(obj);
+   console.log(obj);
+   console.log(result);
+   
+   
+   /*     // 解决问题1没有解决存在问题2：循环引用(不可以)
+    obj.b.push(obj.c);
+    obj.c.j=obj.b;
+      //    2.递归拷贝
     const result=deepClone2(obj);
     result.c.h=20000;
 
     console.log(obj);
-    console.log(result);
+    console.log(result); */
 
    
 
